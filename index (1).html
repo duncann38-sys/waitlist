@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Panda — Join the Waitlist</title>
+<meta name="description" content="Panda gives 18–30s £300 of responsible, hospitality-only credit for the venues they already love. Join the waitlist." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --forest:#0A2A20;
+    --forest-2:#0E3629;
+    --forest-3:#124234;
+    --emerald:#33B87A;
+    --emerald-soft:#7FD3A9;
+    --gold:#E3B451;
+    --ivory:#F5F0E6;
+    --sage:#A6C4B3;
+    --line:rgba(166,196,179,0.18);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    font-family:'Inter',system-ui,sans-serif;
+    background:var(--forest);
+    color:var(--ivory);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  .wrap{max-width:540px;margin:0 auto;padding:0 22px}
+
+  /* ambient glow */
+  .stage{position:relative;overflow:hidden}
+  .stage::before{
+    content:"";position:absolute;top:-140px;left:50%;transform:translateX(-50%);
+    width:520px;height:520px;border-radius:50%;
+    background:radial-gradient(circle, rgba(51,184,122,0.28), rgba(51,184,122,0) 68%);
+    pointer-events:none;
+  }
+  .stage::after{
+    content:"";position:absolute;top:220px;right:-120px;
+    width:340px;height:340px;border-radius:50%;
+    background:radial-gradient(circle, rgba(227,180,81,0.16), rgba(227,180,81,0) 70%);
+    pointer-events:none;
+  }
+
+  /* header */
+  header{position:relative;z-index:2;padding:22px 0 4px}
+  .brand{display:flex;align-items:center;gap:9px}
+  .brand .dot{width:26px;height:26px;border-radius:8px;background:var(--emerald);
+    display:grid;place-items:center;box-shadow:0 6px 18px rgba(51,184,122,0.35)}
+  .brand .dot span{font-size:15px;line-height:1}
+  .brand b{font-family:'Fraunces',serif;font-weight:600;font-size:22px;letter-spacing:-.02em}
+
+  /* scan pill */
+  .scan{display:inline-flex;align-items:center;gap:8px;margin-top:26px;
+    padding:8px 14px;border:1px solid var(--line);border-radius:999px;
+    background:rgba(166,196,179,0.06);font-size:13px;color:var(--sage);font-weight:500}
+  .scan .pulse{width:8px;height:8px;border-radius:50%;background:var(--emerald);
+    box-shadow:0 0 0 0 rgba(51,184,122,0.6);animation:pulse 2.2s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(51,184,122,0.55)}70%{box-shadow:0 0 0 10px rgba(51,184,122,0)}100%{box-shadow:0 0 0 0 rgba(51,184,122,0)}}
+
+  /* hero */
+  .hero{position:relative;z-index:2;padding:18px 0 30px}
+  h1{font-family:'Fraunces',serif;font-weight:600;letter-spacing:-.025em;
+    font-size:clamp(38px,12vw,54px);line-height:1.02;margin:14px 0 0}
+  h1 .accent{color:var(--emerald);font-style:italic}
+  .sub{margin-top:16px;font-size:16.5px;color:rgba(245,240,230,0.82);max-width:30ch}
+  .sub b{color:var(--ivory);font-weight:600}
+
+  /* product-echo card */
+  .card{margin-top:26px;border-radius:20px;padding:20px 20px 18px;
+    background:linear-gradient(150deg,var(--forest-3),var(--forest-2));
+    border:1px solid var(--line);position:relative;overflow:hidden;
+    box-shadow:0 20px 50px rgba(0,0,0,0.35)}
+  .card::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,0.07) 48%,transparent 60%);
+    transform:translateX(-120%);animation:sheen 4.5s ease-in-out 1s infinite}
+  @keyframes sheen{0%{transform:translateX(-120%)}55%,100%{transform:translateX(120%)}}
+  .card .row{display:flex;justify-content:space-between;align-items:flex-start;position:relative;z-index:1}
+  .card .label{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--sage)}
+  .card .amt{font-family:'Fraunces',serif;font-weight:600;font-size:46px;line-height:1;margin-top:6px;letter-spacing:-.02em}
+  .card .chip{width:38px;height:28px;border-radius:7px;
+    background:linear-gradient(135deg,var(--gold),#b98a2c);opacity:.92}
+  .card .meta{margin-top:16px;display:flex;align-items:center;gap:8px;position:relative;z-index:1;
+    font-size:13px;color:var(--emerald-soft)}
+  .card .meta .tick{width:16px;height:16px;border-radius:50%;background:var(--emerald);
+    display:grid;place-items:center;color:var(--forest);font-size:10px;font-weight:800}
+
+  /* cta */
+  .cta{display:flex;align-items:center;justify-content:center;gap:9px;
+    margin-top:24px;width:100%;padding:17px;border:none;border-radius:14px;cursor:pointer;
+    background:var(--emerald);color:#04160F;font-family:'Inter',sans-serif;
+    font-size:16.5px;font-weight:700;text-decoration:none;
+    box-shadow:0 12px 30px rgba(51,184,122,0.32);transition:transform .15s ease,box-shadow .15s ease}
+  .cta:hover{transform:translateY(-1px);box-shadow:0 16px 36px rgba(51,184,122,0.4)}
+  .cta:active{transform:translateY(0)}
+  .cta .arr{transition:transform .2s ease}
+  .cta:hover .arr{transform:translateY(2px)}
+
+  /* value strip */
+  .values{position:relative;z-index:2;padding:6px 0 34px;display:grid;gap:12px}
+  .v{display:flex;gap:14px;align-items:flex-start;padding:16px 16px;
+    border:1px solid var(--line);border-radius:14px;background:rgba(166,196,179,0.04)}
+  .v .n{font-family:'Fraunces',serif;font-size:19px;color:var(--gold);font-weight:600;
+    min-width:26px;line-height:1.15}
+  .v h3{font-size:15.5px;font-weight:600;letter-spacing:-.01em}
+  .v p{font-size:14px;color:rgba(245,240,230,0.72);margin-top:3px}
+
+  /* form section */
+  .form-sec{background:var(--ivory);color:var(--forest);
+    border-radius:26px 26px 0 0;padding:34px 0 26px;position:relative;z-index:2;
+    margin-top:8px}
+  .form-sec .eyebrow{font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--emerald);font-weight:700}
+  .form-sec h2{font-family:'Fraunces',serif;font-weight:600;font-size:30px;
+    letter-spacing:-.02em;margin-top:8px}
+  .form-sec .lead{margin-top:8px;font-size:15.5px;color:#3d5249;max-width:34ch}
+  .form-sec .lead b{color:var(--forest)}
+  .frame-wrap{margin-top:20px;background:#fff;border-radius:16px;overflow:hidden;
+    border:1px solid rgba(10,42,32,0.1);box-shadow:0 10px 30px rgba(10,42,32,0.08)}
+  iframe{width:100%;height:1180px;border:0;display:block}
+  .fallback{margin-top:14px;font-size:13.5px;color:#5a6b62;text-align:center}
+  .fallback a{color:var(--emerald);font-weight:600;text-decoration:none}
+
+  /* footer */
+  footer{background:var(--ivory);color:#5a6b62;padding:6px 0 30px;text-align:center;
+    position:relative;z-index:2}
+  footer .fbrand{font-family:'Fraunces',serif;color:var(--forest);font-weight:600;font-size:18px}
+  footer p{font-size:12.5px;margin-top:6px}
+
+  /* entrance animation */
+  .fade{opacity:0;transform:translateY(14px);animation:rise .7s cubic-bezier(.2,.7,.2,1) forwards}
+  .d1{animation-delay:.05s}.d2{animation-delay:.15s}.d3{animation-delay:.25s}.d4{animation-delay:.35s}
+  @keyframes rise{to{opacity:1;transform:none}}
+
+  @media (prefers-reduced-motion:reduce){
+    .fade{animation:none;opacity:1;transform:none}
+    .card::after,.scan .pulse{animation:none}
+  }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <div class="wrap">
+      <header class="fade d1">
+        <div class="brand">
+          <span class="dot"><span>🐼</span></span>
+          <b>panda</b>
+        </div>
+      </header>
+
+      <section class="hero">
+        <div class="scan fade d1"><span class="pulse"></span> Scanned the truck? You're in the right place.</div>
+        <h1 class="fade d2">Credit for<br />the <span class="accent">good times.</span></h1>
+        <p class="sub fade d2"><b>£300</b> to spend where you already go — bars, restaurants, the nights that matter. Repaid over 3 months, one flat fee, no nasty surprises.</p>
+
+        <div class="card fade d3">
+          <div class="row">
+            <div>
+              <div class="label">Available credit</div>
+              <div class="amt">£300.00</div>
+            </div>
+            <div class="chip"></div>
+          </div>
+          <div class="meta"><span class="tick">✓</span> Ready for the venues you already love</div>
+        </div>
+
+        <a href="#join" class="cta fade d3">Join the waitlist <span class="arr">↓</span></a>
+      </section>
+
+      <section class="values">
+        <div class="v fade d4">
+          <div class="n">01</div>
+          <div><h3>£300, ready when you are</h3><p>Spend across UK hospitality venues from day one — no waiting around.</p></div>
+        </div>
+        <div class="v fade d4">
+          <div class="n">02</div>
+          <div><h3>Repaid over 3 months</h3><p>One flat 12% fee, split into three. No interest spirals, no hidden charges.</p></div>
+        </div>
+        <div class="v fade d4">
+          <div class="n">03</div>
+          <div><h3>Built for going out</h3><p>Made for hospitality — the good stuff — not for overspending everywhere else.</p></div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <section class="form-sec" id="join">
+    <div class="wrap">
+      <div class="eyebrow">Launching 2026</div>
+      <h2>Join the waitlist</h2>
+      <p class="lead">Be first in line when we launch. <b>5,000+ already signed up</b> across 20+ UK universities.</p>
+
+      <div class="frame-wrap">
+        <!--
+          This embeds your existing Panda waitlist Google Form.
+          If the form doesn't appear, open your form → Send → < > (Embed HTML)
+          and paste that exact src URL below (it may look like /forms/d/e/XXXX/viewform?embedded=true).
+        -->
+        <iframe
+          src="https://docs.google.com/forms/d/e/1FAIpQLSdcxPUi1Va-5AYS9eEZySIjJoUSXHFLGCcmTCpWqC7N8ctMlg/viewform?embedded=true"
+          title="Panda waitlist form"
+          loading="lazy">Loading the form…</iframe>
+      </div>
+      <p class="fallback">Form not loading? <a href="https://docs.google.com/forms/d/e/1FAIpQLSdcxPUi1Va-5AYS9eEZySIjJoUSXHFLGCcmTCpWqC7N8ctMlg/viewform" target="_blank" rel="noopener">Open it in a new tab →</a></p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="fbrand">panda</div>
+      <p>The credit layer for the social economy · pandaindustry.co</p>
+      <p>Panda Tech Industries Limited · Company No. 15572716</p>
+    </div>
+  </footer>
+</body>
+</html>
