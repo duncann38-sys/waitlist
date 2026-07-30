@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,149 +8,164 @@
 <meta name="description" content="Panda gives 18–30s £300 of responsible, hospitality-only credit for the venues they already love. Join the waitlist." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 <style>
   :root{
-    --forest:#0A2A20;
-    --forest-2:#0E3629;
-    --forest-3:#124234;
-    --emerald:#33B87A;
-    --emerald-soft:#7FD3A9;
-    --gold:#E3B451;
-    --ivory:#F5F0E6;
-    --sage:#A6C4B3;
+    --forest:#0A2A20; --forest-2:#0E3629; --forest-3:#124234;
+    --emerald:#33B87A; --emerald-soft:#7FD3A9;
+    --gold:#E3B451; --amber:#F5A93C; --neon:#FF7EA6;
+    --ivory:#F5F0E6; --sage:#A6C4B3;
     --line:rgba(166,196,179,0.18);
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{-webkit-text-size-adjust:100%}
-  body{
-    font-family:'Inter',system-ui,sans-serif;
-    background:var(--forest);
-    color:var(--ivory);
-    line-height:1.5;
-    -webkit-font-smoothing:antialiased;
-    overflow-x:hidden;
-  }
-  .wrap{max-width:540px;margin:0 auto;padding:0 22px}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--forest);color:var(--ivory);
+    line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  .wrap{max-width:560px;margin:0 auto;padding:0 22px}
+  a{color:inherit}
 
-  /* ambient glow */
+  /* ---------- ambient bar-light bokeh ---------- */
   .stage{position:relative;overflow:hidden}
-  .stage::before{
-    content:"";position:absolute;top:-140px;left:50%;transform:translateX(-50%);
-    width:520px;height:520px;border-radius:50%;
-    background:radial-gradient(circle, rgba(51,184,122,0.28), rgba(51,184,122,0) 68%);
-    pointer-events:none;
-  }
-  .stage::after{
-    content:"";position:absolute;top:220px;right:-120px;
-    width:340px;height:340px;border-radius:50%;
-    background:radial-gradient(circle, rgba(227,180,81,0.16), rgba(227,180,81,0) 70%);
-    pointer-events:none;
-  }
+  .lights{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+  .light{position:absolute;border-radius:50%;filter:blur(1px);opacity:.0;
+    animation:twinkle 6s ease-in-out infinite}
+  @keyframes twinkle{0%,100%{opacity:.12;transform:translateY(0)}50%{opacity:.6;transform:translateY(-8px)}}
+  .stage::before{content:"";position:absolute;top:-150px;left:50%;transform:translateX(-50%);
+    width:560px;height:560px;border-radius:50%;z-index:0;
+    background:radial-gradient(circle, rgba(51,184,122,0.28), rgba(51,184,122,0) 68%);pointer-events:none}
+  .stage::after{content:"";position:absolute;top:180px;right:-140px;width:380px;height:380px;border-radius:50%;z-index:0;
+    background:radial-gradient(circle, rgba(245,169,60,0.16), rgba(245,169,60,0) 70%);pointer-events:none}
 
-  /* header */
-  header{position:relative;z-index:2;padding:22px 0 4px}
+  /* ---------- header ---------- */
+  header{position:relative;z-index:3;padding:22px 0 4px}
+  .bar{display:flex;align-items:center;justify-content:space-between}
   .brand{display:flex;align-items:center;gap:9px}
   .brand .dot{width:26px;height:26px;border-radius:8px;background:var(--emerald);
-    display:grid;place-items:center;box-shadow:0 6px 18px rgba(51,184,122,0.35)}
-  .brand .dot span{font-size:15px;line-height:1}
+    display:grid;place-items:center;box-shadow:0 6px 18px rgba(51,184,122,0.35);font-size:15px}
   .brand b{font-family:'Fraunces',serif;font-weight:600;font-size:22px;letter-spacing:-.02em}
+  .site{font-size:13px;font-weight:600;color:var(--sage);text-decoration:none;
+    border:1px solid var(--line);padding:7px 12px;border-radius:999px;white-space:nowrap;transition:.15s}
+  .site:hover{color:var(--ivory);border-color:var(--emerald)}
 
-  /* scan pill */
-  .scan{display:inline-flex;align-items:center;gap:8px;margin-top:26px;
-    padding:8px 14px;border:1px solid var(--line);border-radius:999px;
-    background:rgba(166,196,179,0.06);font-size:13px;color:var(--sage);font-weight:500}
+  /* ---------- hero ---------- */
+  .hero{position:relative;z-index:3;padding:16px 0 22px}
+  .scan{display:inline-flex;align-items:center;gap:8px;margin-top:24px;padding:8px 14px;
+    border:1px solid var(--line);border-radius:999px;background:rgba(166,196,179,0.06);
+    font-size:13px;color:var(--sage);font-weight:500}
   .scan .pulse{width:8px;height:8px;border-radius:50%;background:var(--emerald);
-    box-shadow:0 0 0 0 rgba(51,184,122,0.6);animation:pulse 2.2s infinite}
-  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(51,184,122,0.55)}70%{box-shadow:0 0 0 10px rgba(51,184,122,0)}100%{box-shadow:0 0 0 0 rgba(51,184,122,0)}}
-
-  /* hero */
-  .hero{position:relative;z-index:2;padding:18px 0 30px}
+    animation:pulse 2.2s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(51,184,122,.55)}70%{box-shadow:0 0 0 10px rgba(51,184,122,0)}100%{box-shadow:0 0 0 0 rgba(51,184,122,0)}}
   h1{font-family:'Fraunces',serif;font-weight:600;letter-spacing:-.025em;
-    font-size:clamp(38px,12vw,54px);line-height:1.02;margin:14px 0 0}
+    font-size:clamp(40px,12vw,56px);line-height:1.02;margin:14px 0 0}
   h1 .accent{color:var(--emerald);font-style:italic}
-  .sub{margin-top:16px;font-size:16.5px;color:rgba(245,240,230,0.82);max-width:30ch}
-  .sub b{color:var(--ivory);font-weight:600}
+  .sub{margin-top:16px;font-size:16.5px;color:rgba(245,240,230,.82);max-width:32ch}
+  .sub b{color:var(--ivory);font-weight:700}
 
-  /* product-echo card */
-  .card{margin-top:26px;border-radius:20px;padding:20px 20px 18px;
-    background:linear-gradient(150deg,var(--forest-3),var(--forest-2));
-    border:1px solid var(--line);position:relative;overflow:hidden;
-    box-shadow:0 20px 50px rgba(0,0,0,0.35)}
+  /* ---------- vibe ticker ---------- */
+  .ticker{position:relative;z-index:3;margin-top:22px;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    padding:11px 0;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+    mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+  .track{display:inline-flex;gap:26px;white-space:nowrap;animation:scroll 22s linear infinite;padding-left:26px}
+  .track span{font-size:14px;font-weight:600;color:var(--emerald-soft);letter-spacing:.01em}
+  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* ---------- product-echo card ---------- */
+  .card{position:relative;z-index:3;margin-top:26px;border-radius:20px;padding:20px 20px 18px;
+    background:linear-gradient(150deg,var(--forest-3),var(--forest-2));border:1px solid var(--line);
+    overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.35)}
   .card::after{content:"";position:absolute;inset:0;
-    background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,0.07) 48%,transparent 60%);
+    background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.07) 48%,transparent 60%);
     transform:translateX(-120%);animation:sheen 4.5s ease-in-out 1s infinite}
   @keyframes sheen{0%{transform:translateX(-120%)}55%,100%{transform:translateX(120%)}}
-  .card .row{display:flex;justify-content:space-between;align-items:flex-start;position:relative;z-index:1}
+  .card .rowb{display:flex;justify-content:space-between;align-items:flex-start;position:relative;z-index:1}
   .card .label{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--sage)}
   .card .amt{font-family:'Fraunces',serif;font-weight:600;font-size:46px;line-height:1;margin-top:6px;letter-spacing:-.02em}
-  .card .chip{width:38px;height:28px;border-radius:7px;
-    background:linear-gradient(135deg,var(--gold),#b98a2c);opacity:.92}
-  .card .meta{margin-top:16px;display:flex;align-items:center;gap:8px;position:relative;z-index:1;
-    font-size:13px;color:var(--emerald-soft)}
-  .card .meta .tick{width:16px;height:16px;border-radius:50%;background:var(--emerald);
-    display:grid;place-items:center;color:var(--forest);font-size:10px;font-weight:800}
+  .card .chip{width:38px;height:28px;border-radius:7px;background:linear-gradient(135deg,var(--gold),#b98a2c);opacity:.92}
+  .card .meta{margin-top:16px;display:flex;align-items:center;gap:8px;position:relative;z-index:1;font-size:13px;color:var(--emerald-soft)}
+  .card .meta .tick{width:16px;height:16px;border-radius:50%;background:var(--emerald);display:grid;place-items:center;color:var(--forest);font-size:10px;font-weight:800}
 
-  /* cta */
-  .cta{display:flex;align-items:center;justify-content:center;gap:9px;
-    margin-top:24px;width:100%;padding:17px;border:none;border-radius:14px;cursor:pointer;
-    background:var(--emerald);color:#04160F;font-family:'Inter',sans-serif;
-    font-size:16.5px;font-weight:700;text-decoration:none;
-    box-shadow:0 12px 30px rgba(51,184,122,0.32);transition:transform .15s ease,box-shadow .15s ease}
-  .cta:hover{transform:translateY(-1px);box-shadow:0 16px 36px rgba(51,184,122,0.4)}
-  .cta:active{transform:translateY(0)}
-  .cta .arr{transition:transform .2s ease}
-  .cta:hover .arr{transform:translateY(2px)}
+  /* ---------- CTAs ---------- */
+  .cta{display:flex;align-items:center;justify-content:center;gap:9px;position:relative;z-index:3;
+    margin-top:22px;width:100%;padding:17px;border:none;border-radius:14px;cursor:pointer;
+    background:var(--emerald);color:#04160F;font-family:'Inter';font-size:16.5px;font-weight:800;
+    text-decoration:none;box-shadow:0 12px 30px rgba(51,184,122,.32);transition:transform .15s,box-shadow .15s}
+  .cta:hover{transform:translateY(-1px);box-shadow:0 16px 36px rgba(51,184,122,.4)}
+  .cta .arr{transition:transform .2s}.cta:hover .arr{transform:translateY(2px)}
+  .ghost{display:flex;align-items:center;justify-content:center;gap:8px;position:relative;z-index:3;
+    margin-top:12px;width:100%;padding:14px;border:1px solid var(--line);border-radius:14px;
+    background:transparent;color:var(--ivory);font-weight:600;font-size:14.5px;text-decoration:none;transition:.15s}
+  .ghost:hover{border-color:var(--emerald);color:var(--emerald-soft)}
 
-  /* value strip */
-  .values{position:relative;z-index:2;padding:6px 0 34px;display:grid;gap:12px}
-  .v{display:flex;gap:14px;align-items:flex-start;padding:16px 16px;
-    border:1px solid var(--line);border-radius:14px;background:rgba(166,196,179,0.04)}
-  .v .n{font-family:'Fraunces',serif;font-size:19px;color:var(--gold);font-weight:600;
-    min-width:26px;line-height:1.15}
-  .v h3{font-size:15.5px;font-weight:600;letter-spacing:-.01em}
-  .v p{font-size:14px;color:rgba(245,240,230,0.72);margin-top:3px}
+  /* ---------- venue street scene ---------- */
+  .scene-sec{position:relative;z-index:3;margin-top:34px}
+  .scene-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+  .scene-head h2{font-family:'Fraunces',serif;font-weight:600;font-size:24px;letter-spacing:-.02em}
+  .scene-head span{font-size:13.5px;color:var(--sage)}
+  .scene{width:100%;height:auto;display:block;border-radius:18px;overflow:hidden;
+    border:1px solid var(--line);background:linear-gradient(180deg,#0a2f24,#0a231b)}
+  .bulb{animation:blink 3s ease-in-out infinite}
+  .bulb:nth-child(2n){animation-delay:.5s}.bulb:nth-child(3n){animation-delay:1s}.bulb:nth-child(4n){animation-delay:1.6s}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.35}}
+  .win{animation:glow 4s ease-in-out infinite}
+  .win:nth-child(odd){animation-delay:1.2s}
+  @keyframes glow{0%,100%{opacity:.95}50%{opacity:.6}}
 
-  /* form section */
-  .form-sec{background:var(--ivory);color:var(--forest);
-    border-radius:26px 26px 0 0;padding:34px 0 26px;position:relative;z-index:2;
-    margin-top:8px}
-  .form-sec .eyebrow{font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;
-    color:var(--emerald);font-weight:700}
-  .form-sec h2{font-family:'Fraunces',serif;font-weight:600;font-size:30px;
-    letter-spacing:-.02em;margin-top:8px}
+  /* ---------- cheers strip ---------- */
+  .cheers{position:relative;z-index:3;margin-top:26px;display:flex;gap:16px;align-items:center;
+    padding:18px 18px;border-radius:16px;border:1px solid var(--line);
+    background:linear-gradient(120deg,rgba(245,169,60,.10),rgba(255,126,166,.08))}
+  .cheers .em{font-size:34px;line-height:1;animation:clink 2.4s ease-in-out infinite;transform-origin:bottom center}
+  @keyframes clink{0%,100%{transform:rotate(0)}42%{transform:rotate(-11deg)}50%{transform:rotate(0)}58%{transform:rotate(11deg)}66%{transform:rotate(0)}}
+  .cheers h3{font-family:'Fraunces',serif;font-weight:600;font-size:19px;letter-spacing:-.01em}
+  .cheers p{font-size:14px;color:rgba(245,240,230,.75);margin-top:2px}
+
+  /* ---------- value cards ---------- */
+  .values{position:relative;z-index:3;padding:22px 0 8px;display:grid;gap:12px}
+  .v{display:flex;gap:14px;align-items:flex-start;padding:16px;border:1px solid var(--line);
+    border-radius:14px;background:rgba(166,196,179,.04)}
+  .v .ic{font-size:22px;line-height:1.1;min-width:30px;text-align:center}
+  .v h3{font-size:15.5px;font-weight:700;letter-spacing:-.01em}
+  .v p{font-size:14px;color:rgba(245,240,230,.72);margin-top:3px}
+
+  /* ---------- form ---------- */
+  .form-sec{background:var(--ivory);color:var(--forest);border-radius:26px 26px 0 0;
+    padding:34px 0 26px;position:relative;z-index:3;margin-top:30px}
+  .form-sec .eyebrow{font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--emerald);font-weight:800}
+  .form-sec h2{font-family:'Fraunces',serif;font-weight:600;font-size:30px;letter-spacing:-.02em;margin-top:8px}
   .form-sec .lead{margin-top:8px;font-size:15.5px;color:#3d5249;max-width:34ch}
   .form-sec .lead b{color:var(--forest)}
   .frame-wrap{margin-top:20px;background:#fff;border-radius:16px;overflow:hidden;
-    border:1px solid rgba(10,42,32,0.1);box-shadow:0 10px 30px rgba(10,42,32,0.08)}
+    border:1px solid rgba(10,42,32,.1);box-shadow:0 10px 30px rgba(10,42,32,.08)}
   iframe{width:100%;height:1180px;border:0;display:block}
   .fallback{margin-top:14px;font-size:13.5px;color:#5a6b62;text-align:center}
-  .fallback a{color:var(--emerald);font-weight:600;text-decoration:none}
+  .fallback a{color:var(--emerald);font-weight:700;text-decoration:none}
 
-  /* footer */
-  footer{background:var(--ivory);color:#5a6b62;padding:6px 0 30px;text-align:center;
-    position:relative;z-index:2}
+  /* ---------- footer ---------- */
+  footer{background:var(--ivory);color:#5a6b62;padding:8px 0 32px;text-align:center;position:relative;z-index:3}
+  .footlink{display:inline-block;margin:2px 0 10px;font-weight:700;color:var(--emerald);text-decoration:none;font-size:14.5px}
   footer .fbrand{font-family:'Fraunces',serif;color:var(--forest);font-weight:600;font-size:18px}
   footer p{font-size:12.5px;margin-top:6px}
 
-  /* entrance animation */
+  /* ---------- entrance ---------- */
   .fade{opacity:0;transform:translateY(14px);animation:rise .7s cubic-bezier(.2,.7,.2,1) forwards}
   .d1{animation-delay:.05s}.d2{animation-delay:.15s}.d3{animation-delay:.25s}.d4{animation-delay:.35s}
   @keyframes rise{to{opacity:1;transform:none}}
-
   @media (prefers-reduced-motion:reduce){
-    .fade{animation:none;opacity:1;transform:none}
-    .card::after,.scan .pulse{animation:none}
+    .fade,.light,.card::after,.scan .pulse,.track,.bulb,.win,.cheers .em{animation:none!important;opacity:1;transform:none}
   }
 </style>
 </head>
 <body>
   <div class="stage">
+    <!-- bokeh bar lights -->
+    <div class="lights" id="lights" aria-hidden="true"></div>
+
     <div class="wrap">
       <header class="fade d1">
-        <div class="brand">
-          <span class="dot"><span>🐼</span></span>
-          <b>panda</b>
+        <div class="bar">
+          <div class="brand"><span class="dot">🐼</span><b>panda</b></div>
+          <a class="site" href="https://pandaindustry.co" target="_blank" rel="noopener">Explore Panda ↗</a>
         </div>
       </header>
 
@@ -157,54 +173,145 @@
         <div class="scan fade d1"><span class="pulse"></span> Scanned the truck? You're in the right place.</div>
         <h1 class="fade d2">Credit for<br />the <span class="accent">good times.</span></h1>
         <p class="sub fade d2"><b>£300</b> to spend where you already go — bars, restaurants, the nights that matter. Repaid over 3 months, one flat fee, no nasty surprises.</p>
+      </section>
+    </div>
 
-        <div class="card fade d3">
-          <div class="row">
-            <div>
-              <div class="label">Available credit</div>
-              <div class="amt">£300.00</div>
-            </div>
-            <div class="chip"></div>
-          </div>
-          <div class="meta"><span class="tick">✓</span> Ready for the venues you already love</div>
+    <!-- vibe ticker -->
+    <div class="ticker fade d3">
+      <div class="track">
+        <span>🍕 Pizza night</span><span>🍸 Cocktails</span><span>🍺 Save the pub</span><span>🎉 Birthdays sorted</span><span>🌮 Taco Tuesday</span><span>🥂 Bottomless brunch</span><span>🍜 Late-night eats</span><span>🎶 Nights out</span>
+        <span>🍕 Pizza night</span><span>🍸 Cocktails</span><span>🍺 Save the pub</span><span>🎉 Birthdays sorted</span><span>🌮 Taco Tuesday</span><span>🥂 Bottomless brunch</span><span>🍜 Late-night eats</span><span>🎶 Nights out</span>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <div class="card fade d3">
+        <div class="rowb">
+          <div><div class="label">Available credit</div><div class="amt">£300.00</div></div>
+          <div class="chip"></div>
         </div>
+        <div class="meta"><span class="tick">✓</span> Ready for the venues you already love</div>
+      </div>
 
-        <a href="#join" class="cta fade d3">Join the waitlist <span class="arr">↓</span></a>
+      <a href="#join" class="cta fade d3">Join the waitlist <span class="arr">↓</span></a>
+      <a href="https://pandaindustry.co" target="_blank" rel="noopener" class="ghost fade d3">See how Panda works ↗</a>
+
+      <!-- venue street scene -->
+      <section class="scene-sec fade d4">
+        <div class="scene-head">
+          <h2>Your night, on Panda</h2>
+          <span>the spots you already love</span>
+        </div>
+        <svg class="scene" viewBox="0 0 800 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A row of glowing hospitality venues at night under festoon lights">
+          <defs>
+            <radialGradient id="moon" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#F5F0E6" stop-opacity=".9"/><stop offset="100%" stop-color="#F5F0E6" stop-opacity="0"/>
+            </radialGradient>
+            <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#0c3427"/><stop offset="100%" stop-color="#0a231b"/>
+            </linearGradient>
+          </defs>
+          <rect width="800" height="340" fill="url(#sky)"/>
+          <circle cx="680" cy="70" r="90" fill="url(#moon)"/>
+          <!-- festoon lights -->
+          <path d="M0 46 Q200 96 400 52 T800 50" stroke="#2c5346" stroke-width="2" fill="none"/>
+          <g>
+            <circle class="bulb" cx="60" cy="62" r="5" fill="#F5A93C"/>
+            <circle class="bulb" cx="150" cy="74" r="5" fill="#33B87A"/>
+            <circle class="bulb" cx="250" cy="74" r="5" fill="#E3B451"/>
+            <circle class="bulb" cx="350" cy="62" r="5" fill="#FF7EA6"/>
+            <circle class="bulb" cx="450" cy="56" r="5" fill="#F5A93C"/>
+            <circle class="bulb" cx="550" cy="60" r="5" fill="#33B87A"/>
+            <circle class="bulb" cx="650" cy="60" r="5" fill="#E3B451"/>
+            <circle class="bulb" cx="740" cy="58" r="5" fill="#FF7EA6"/>
+          </g>
+          <!-- ground -->
+          <rect x="0" y="300" width="800" height="40" fill="#0a1f18"/>
+
+          <!-- PUB -->
+          <g>
+            <rect x="40" y="150" width="150" height="150" rx="6" fill="#123a2c"/>
+            <rect x="40" y="150" width="150" height="26" fill="#1c5a43"/>
+            <rect x="58" y="196" width="42" height="52" rx="4" class="win" fill="#F5A93C" opacity=".9"/>
+            <rect x="128" y="196" width="42" height="52" rx="4" class="win" fill="#E3B451" opacity=".85"/>
+            <rect x="92" y="258" width="46" height="42" rx="3" fill="#0c281e"/>
+            <rect x="80" y="120" width="70" height="26" rx="4" fill="#0c281e" stroke="#2c5346"/>
+            <text x="115" y="138" text-anchor="middle" font-family="Fraunces, serif" font-size="13" fill="#F5F0E6">THE PUB</text>
+            <!-- beer -->
+            <rect x="150" y="186" width="16" height="20" rx="2" fill="#E3B451"/><rect x="150" y="186" width="16" height="5" fill="#F5F0E6"/>
+          </g>
+
+          <!-- PIZZERIA -->
+          <g>
+            <rect x="215" y="165" width="150" height="135" rx="6" fill="#123a2c"/>
+            <!-- awning -->
+            <g>
+              <rect x="209" y="150" width="162" height="24" fill="#c94f4f"/>
+              <rect x="209" y="150" width="20.25" height="24" fill="#F5F0E6"/><rect x="249.5" y="150" width="20.25" height="24" fill="#F5F0E6"/>
+              <rect x="290" y="150" width="20.25" height="24" fill="#F5F0E6"/><rect x="330.5" y="150" width="20.25" height="24" fill="#F5F0E6"/>
+            </g>
+            <text x="290" y="140" text-anchor="middle" font-family="Fraunces, serif" font-size="14" fill="#F5F0E6">PIZZERIA</text>
+            <rect x="232" y="196" width="46" height="56" rx="4" class="win" fill="#F5A93C" opacity=".9"/>
+            <rect x="300" y="258" width="46" height="42" rx="3" fill="#0c281e"/>
+            <!-- pizza slice -->
+            <path d="M300 196 l24 0 l-12 26 z" fill="#E3B451"/><circle cx="309" cy="205" r="2.4" fill="#c94f4f"/><circle cx="315" cy="210" r="2.4" fill="#c94f4f"/>
+          </g>
+
+          <!-- COCKTAIL BAR -->
+          <g>
+            <rect x="390" y="140" width="150" height="160" rx="6" fill="#102f26"/>
+            <rect x="405" y="120" width="120" height="30" rx="6" fill="#0c241c" stroke="#FF7EA6" stroke-width="1.5"/>
+            <text x="465" y="140" text-anchor="middle" font-family="Fraunces, serif" font-size="15" fill="#FF7EA6">BAR</text>
+            <rect x="410" y="182" width="40" height="60" rx="4" class="win" fill="#FF7EA6" opacity=".35"/>
+            <rect x="470" y="182" width="40" height="60" rx="4" class="win" fill="#E3B451" opacity=".8"/>
+            <rect x="448" y="258" width="44" height="42" rx="3" fill="#0a201a"/>
+            <!-- martini -->
+            <path d="M508 190 l24 0 l-12 14 z" fill="#7FD3A9"/><rect x="519" y="204" width="2" height="16" fill="#7FD3A9"/><rect x="512" y="220" width="16" height="3" fill="#7FD3A9"/>
+          </g>
+
+          <!-- TACO CART -->
+          <g>
+            <rect x="580" y="214" width="150" height="86" rx="8" fill="#123a2c"/>
+            <rect x="574" y="196" width="162" height="22" rx="6" fill="#F5A93C"/>
+            <rect x="574" y="196" width="27" height="22" fill="#0c281e" opacity=".25"/><rect x="628" y="196" width="27" height="22" fill="#0c281e" opacity=".25"/><rect x="682" y="196" width="27" height="22" fill="#0c281e" opacity=".25"/>
+            <text x="655" y="248" text-anchor="middle" font-family="Fraunces, serif" font-size="13" fill="#F5F0E6">STREET FOOD</text>
+            <circle cx="612" cy="304" r="12" fill="#0a1f18" stroke="#2c5346" stroke-width="3"/>
+            <circle cx="700" cy="304" r="12" fill="#0a1f18" stroke="#2c5346" stroke-width="3"/>
+            <!-- taco -->
+            <path d="M632 176 a18 18 0 0 1 36 0 z" fill="#E3B451"/><path d="M636 176 a14 14 0 0 1 28 0 z" fill="#7FD3A9"/>
+          </g>
+        </svg>
       </section>
 
+      <!-- cheers strip -->
+      <div class="cheers fade d4">
+        <div class="em">🍻</div>
+        <div>
+          <h3>Save the pub. See your mates.</h3>
+          <p>Panda's for the birthdays, the rounds, the last-minute "let's go out" — money back into the venues you love.</p>
+        </div>
+      </div>
+
+      <!-- value cards -->
       <section class="values">
-        <div class="v fade d4">
-          <div class="n">01</div>
-          <div><h3>£300, ready when you are</h3><p>Spend across UK hospitality venues from day one — no waiting around.</p></div>
-        </div>
-        <div class="v fade d4">
-          <div class="n">02</div>
-          <div><h3>Repaid over 3 months</h3><p>One flat 12% fee, split into three. No interest spirals, no hidden charges.</p></div>
-        </div>
-        <div class="v fade d4">
-          <div class="n">03</div>
-          <div><h3>Built for going out</h3><p>Made for hospitality — the good stuff — not for overspending everywhere else.</p></div>
-        </div>
+        <div class="v fade d4"><div class="ic">💳</div><div><h3>£300, ready when you are</h3><p>Spend across UK hospitality venues from day one — no waiting around.</p></div></div>
+        <div class="v fade d4"><div class="ic">📆</div><div><h3>Repaid over 3 months</h3><p>One flat 12% fee, split into three. No interest spirals, no hidden charges.</p></div></div>
+        <div class="v fade d4"><div class="ic">🍸</div><div><h3>Built for going out</h3><p>Made for hospitality — the good stuff — not for overspending everywhere else.</p></div></div>
       </section>
     </div>
   </div>
 
+  <!-- form -->
   <section class="form-sec" id="join">
     <div class="wrap">
       <div class="eyebrow">Launching 2026</div>
       <h2>Join the waitlist</h2>
       <p class="lead">Be first in line when we launch. <b>5,000+ already signed up</b> across 20+ UK universities.</p>
-
       <div class="frame-wrap">
-        <!--
-          This embeds your existing Panda waitlist Google Form.
-          If the form doesn't appear, open your form → Send → < > (Embed HTML)
-          and paste that exact src URL below (it may look like /forms/d/e/XXXX/viewform?embedded=true).
-        -->
+        <!-- Your Panda waitlist Google Form (published embed URL) -->
         <iframe
           src="https://docs.google.com/forms/d/e/1FAIpQLSdcxPUi1Va-5AYS9eEZySIjJoUSXHFLGCcmTCpWqC7N8ctMlg/viewform?embedded=true"
-          title="Panda waitlist form"
-          loading="lazy">Loading the form…</iframe>
+          title="Panda waitlist form" loading="lazy">Loading the form…</iframe>
       </div>
       <p class="fallback">Form not loading? <a href="https://docs.google.com/forms/d/e/1FAIpQLSdcxPUi1Va-5AYS9eEZySIjJoUSXHFLGCcmTCpWqC7N8ctMlg/viewform" target="_blank" rel="noopener">Open it in a new tab →</a></p>
     </div>
@@ -212,10 +319,34 @@
 
   <footer>
     <div class="wrap">
+      <a class="footlink" href="https://pandaindustry.co" target="_blank" rel="noopener">Explore Panda → pandaindustry.co</a>
       <div class="fbrand">panda</div>
-      <p>The credit layer for the social economy · pandaindustry.co</p>
+      <p>The credit layer for the social economy</p>
       <p>Panda Tech Industries Limited · Company No. 15572716</p>
     </div>
   </footer>
+
+  <script>
+    // scatter warm bokeh bar-lights behind the hero
+    (function(){
+      var host=document.getElementById('lights');
+      if(!host) return;
+      var cols=['#F5A93C','#33B87A','#E3B451','#FF7EA6','#7FD3A9'];
+      var n=window.innerWidth<520?10:16;
+      for(var i=0;i<n;i++){
+        var s=document.createElement('span');
+        s.className='light';
+        var size=18+Math.random()*44;
+        s.style.width=size+'px';s.style.height=size+'px';
+        s.style.left=(Math.random()*100)+'%';
+        s.style.top=(Math.random()*80)+'%';
+        var c=cols[i%cols.length];
+        s.style.background='radial-gradient(circle,'+c+'55,'+c+'00 70%)';
+        s.style.animationDelay=(Math.random()*6)+'s';
+        s.style.animationDuration=(5+Math.random()*4)+'s';
+        host.appendChild(s);
+      }
+    })();
+  </script>
 </body>
 </html>
